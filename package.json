@@ -3,15 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"bun run dev:next\" \"bun run dev:socket\"",
+    "dev:next": "next dev",
+    "dev:socket": "bun --watch ws-server.ts",
     "build": "next build",
-    "start": "next start",
+    "start": "concurrently \"bun ws-server.ts\" \"next start\"",
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.36.8",
+    "@prisma/client": "^7.2.0",
+    "@types/bun": "^1.3.4",
+    "bullmq": "^5.66.5",
+    "ioredis": "^5.9.2",
     "next": "16.0.8",
+    "prisma": "^7.2.0",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -19,6 +29,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.0.8",
     "tailwindcss": "^4",
