@@ -17,7 +17,7 @@ export default function ChatRoom({ roomId, userId, username }: ChatRoomProps) {
   const [isTyping, setIsTyping] = useState(false);
   const [typingUsers, setTypingUsers] = useState<TypingUser[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const typingTimeoutRef = useRef<NodeJS.Timeout>();
+  const typingTimeoutRef = useRef<NodeJS.Timeout|null>(null);
 
   useEffect(() => {
     if (!socket) return;
